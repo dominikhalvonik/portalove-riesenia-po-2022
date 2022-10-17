@@ -18,6 +18,7 @@ $emails = $db->getAllEmails();
         foreach ($emails as $email) {
             echo "<li>Name: ".$email['name'].", From: ".$email['email'].", Message: ".$email['message']."</li>";
             echo '<li><a href="delete.php?id='.$email['id'].'">Delete</a></li>';
+            echo '<li><a href="update_form.php?id='.$email['id'].'">Update</a></li>';
         }
     ?>
 </ul>

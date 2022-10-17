@@ -109,4 +109,33 @@ class DB
             return false;
         }
     }
+
+    public function getEmailDetails($id)
+    {
+        $sql = "SELECT id, name, email, message FROM email WHERE id = " . $id;
+        $result = [];
+
+        try {
+            $query = $this->connection->query($sql);
+            $result = $query->fetchAll(\PDO::FETCH_ASSOC);
+            return $result;
+        } catch (\PDOException $e) {
+            return $result;
+        }
+
+    }
+
+    public function updateEmail($id, $from, $email, $message)
+    {
+        $sql = "UPDATE email 
+                SET name = '".$from."', email = '".$email."', message = '".$message."' 
+                WHERE id = ".$id;
+
+        try {
+            $this->connection->exec($sql);
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
 }
