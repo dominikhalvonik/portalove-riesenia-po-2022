@@ -1,9 +1,7 @@
 <?php
-include_once "DB.php";
+include_once "db_connect.php";
+$db = $GLOBALS['db'];
 
-use portalove\DB;
-
-$db = new DB('localhost', 'portalove-riesenia', 'root', '');
 $menuItems = $db->getMenu();
 ?>
 

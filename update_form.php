@@ -1,8 +1,6 @@
 <?php
-include_once "DB.php";
-
-use portalove\DB;
-$db = new DB('localhost', 'portalove-riesenia', 'root', '');
+include_once "db_connect.php";
+$db = $GLOBALS['db'];
 
 $emailDetails = $db->getEmailDetails($_GET['id']);
 ?>

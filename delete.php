@@ -1,10 +1,8 @@
 <?php
-include_once "DB.php";
-
-use portalove\DB;
+include_once "db_connect.php";
 
 if(isset($_GET['id'])) {
-    $db = new DB('localhost', 'portalove-riesenia', 'root', '');
+    $db = $GLOBALS['db'];
     $delete = $db->deleteEmail($_GET['id']);
 
     if($delete) {

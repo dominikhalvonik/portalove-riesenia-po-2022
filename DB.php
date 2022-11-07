@@ -138,4 +138,22 @@ class DB
             return false;
         }
     }
+
+    public function login($username, $password)
+    {
+        $hasPassword = sha1($password);
+        $sql = "SELECT COUNT(id) AS is_admin FROM user WHERE meno = '".$username."' AND heslo = '".$hasPassword."'";
+
+        try {
+            $query = $this->connection->query($sql);
+            $result = $query->fetch(\PDO::FETCH_ASSOC);
+            if(intval($result['is_admin']) === 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
 }

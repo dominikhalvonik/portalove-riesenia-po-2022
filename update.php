@@ -1,8 +1,6 @@
 <?php
-include_once "DB.php";
-
-use portalove\DB;
-$db = new DB('localhost', 'portalove-riesenia', 'root', '');
+include_once "db_connect.php";
+$db = $GLOBALS['db'];
 
 if(isset($_POST['submit'])) {
     $update = $db->updateEmail($_POST['id'], $_POST['from'], $_POST['email'], $_POST['content']);

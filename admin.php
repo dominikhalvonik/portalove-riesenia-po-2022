@@ -1,15 +1,26 @@
 <?php
-include_once "DB.php";
-
-use portalove\DB;
-$db = new DB('localhost', 'portalove-riesenia', 'root', '');
+include_once "db_connect.php";
+$db = $GLOBALS['db'];
 
 $emails = $db->getAllEmails();
+if(!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] === false) {
+?>
+    <form action="login.php" method="post">
+        Username: <br>
+        <input type="text" name="username" placeholder="Username"><br>
+        Password: <br>
+        <input type="password" name="password"><br>
+        <br>
+        <input type="submit" name="submit" value="Login">
+    </form>
+<?php
+} else {
 ?>
 
 <ul>
     <li><a href="admin.php">All emails</a></li>
     <li><a href="index.php">Web page</a></li>
+    <li><a href="logout.php">Logout</a></li>
 </ul>
 <br><br><br>
 
@@ -22,5 +33,7 @@ $emails = $db->getAllEmails();
         }
     ?>
 </ul>
-
+<?php
+}
+?>
 
